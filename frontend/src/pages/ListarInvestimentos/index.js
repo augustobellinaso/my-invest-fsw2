@@ -23,7 +23,7 @@ export default function ListarInvestimentos() {
               <Link to="/cadastrar-invesimento">Cadastrar Investimento</Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/listar-invesimentos">Listar Investimentos</Link>
+              <Link to="/listar-investimentos">Listar Investimentos</Link>
             </Menu.Item>
           </Menu>
         </Header>
