@@ -14,7 +14,7 @@ export default function Routes() {
         />
         <Route
           exact
-          path="/listar-invesimentos"
+          path="/listar-investimentos"
           component={ListarInvestimentos}
         />
       </Switch>
