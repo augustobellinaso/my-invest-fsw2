@@ -1,11 +1,18 @@
 import "antd/dist/antd.css";
 import { Table, Button, message, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const { Header, Content, Footer } = Layout;
 const { Column } = Table;
 
 export default function ListarInvestimentos() {
+  const [investimentos, setInvestimentos] = useState([]);
+
+  function remove(record) {
+    message.success("Investimento removido com sucesso");
+  }
+
   return (
     <div className="container">
       <Layout className="layout">
@@ -23,7 +30,7 @@ export default function ListarInvestimentos() {
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
             <h2>INVESTIMENTOS</h2>
-            <Table dataSource={pessoas}>
+            <Table dataSource={investimentos}>
               <Column
                 title="Código do ativo"
                 dataIndex="codigoAtivo"
