@@ -7,12 +7,29 @@ import {
   Menu,
   Input,
   InputNumber,
+  Select,
 } from "antd";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import InvestimentoService from "../../service/InvestimentoService";
+import CategoriaService from "../../service/CategoriaService";
 const { Header, Content, Footer } = Layout;
+const { Option } = Select;
 
 export default function CadastrarInvestimento() {
+  const [categorias, setCategorias] = useState([]);
+  const [categoria, setCategoria] = useState([]);
+
+  useEffect(() => {
+    refreshCategorias();
+  }, [categorias]);
+
+  async function refreshCategorias() {
+    CategoriaService.retrieveAllCategorias().then((response) => {
+      setCategorias(response.data);
+    });
+  }
+
   const layout = {
     labelCol: {
       span: 4,
@@ -37,6 +54,11 @@ export default function CadastrarInvestimento() {
     message.danger("Investimento não foi salvo!");
     console.log("Failed: ", errorInfo);
   };
+
+  function handleChange(value) {
+    setCategoria(value);
+  }
+
   return (
     <div className="container">
       <Layout className="layout">
@@ -114,7 +136,15 @@ export default function CadastrarInvestimento() {
               </Form.Item>
 
               <Form.Item label="Categoria" name="categoria">
-                <Input />
+                <Select onChange={handleChange}>
+                  {categorias.map((item, index) => {
+                    return (
+                      <Option key={item.id} value={item.id}>
+                        {item.nome}
+                      </Option>
+                    );
+                  })}
+                </Select>
               </Form.Item>
 
               <Form.Item {...tailLayout}>
