@@ -12,7 +12,7 @@ class InvestimentoService {
   }
 
   deleteInvestimento(codigo) {
-    return axios.delete(`${API_URL}/investimentos/codigo`);
+    return axios.delete(`${API_URL}/investimentos/${codigo}`);
   }
 }
 

@@ -12,7 +12,7 @@ export default function ListarInvestimentos() {
 
   useEffect(() => {
     refreshInvestimentos();
-  }, []);
+  }, [investimentos]);
 
   async function refreshInvestimentos() {
     InvestimentoService.retrieveAllInvestimentos().then((response) => {
@@ -21,6 +21,7 @@ export default function ListarInvestimentos() {
   }
 
   function remove(record) {
+    InvestimentoService.deleteInvestimento(record.codigo);
     message.success("Investimento removido com sucesso");
   }
 
