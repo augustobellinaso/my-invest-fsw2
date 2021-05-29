@@ -9,6 +9,7 @@ import {
   InputNumber,
 } from "antd";
 import { Link } from "react-router-dom";
+import InvestimentoService from "../../service/InvestimentoService";
 const { Header, Content, Footer } = Layout;
 
 export default function CadastrarInvestimento() {
@@ -28,12 +29,13 @@ export default function CadastrarInvestimento() {
   };
 
   const onFinish = (values) => {
+    InvestimentoService.saveInvestimento(values);
     message.success("Investimento salvo com sucesso!");
   };
 
   const onFinishFailed = (errorInfo) => {
     message.danger("Investimento não foi salvo!");
-    console.log("Failed:", errorInfo);
+    console.log("Failed: ", errorInfo);
   };
   return (
     <div className="container">
@@ -74,7 +76,7 @@ export default function CadastrarInvestimento() {
 
               <Form.Item
                 label="Valor"
-                name="valor"
+                name="valorCota"
                 rules={[
                   {
                     required: true,
@@ -109,6 +111,10 @@ export default function CadastrarInvestimento() {
                 ]}
               >
                 <DatePicker />
+              </Form.Item>
+
+              <Form.Item label="Categoria" name="categoria">
+                <Input />
               </Form.Item>
 
               <Form.Item {...tailLayout}>
